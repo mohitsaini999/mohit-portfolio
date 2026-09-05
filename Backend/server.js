@@ -6,7 +6,8 @@ const { GoogleGenAI } = require("@google/genai");
 
 const app = express();
 
-const PORT = 5000;
+// const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 
 // =================================
@@ -327,10 +328,19 @@ app.post("/api/chat", async (req, res) => {
 // START SERVER
 // =================================
 
-app.listen(PORT, () => {
+// app.listen(PORT, () => {
+
+//     console.log(
+//         `AI backend running at http://localhost:${PORT}`
+//     );
+
+// });
+
+
+app.listen(PORT, "0.0.0.0", () => {
 
     console.log(
-        `AI backend running at http://localhost:${PORT}`
+        `AI backend running on port ${PORT}`
     );
 
 });
