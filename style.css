@@ -595,7 +595,7 @@ img {
 /* ==============================
    RESPONSIVE
 ================================= */
-
+/* 
 @media (max-width: 900px) {
 
     .nav-links {
@@ -638,10 +638,41 @@ img {
         grid-template-columns: 1fr;
     }
 
-}
+} */
 
 
 @media (max-width: 500px) {
+
+
+    /* AI Assistant - Mobile */
+.ai-button {
+    right: 15px;
+    bottom: 15px;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    justify-content: center;
+}
+.ai-button-text {
+    display: none;
+}
+
+
+.ai-chat {
+
+    right: 10px;
+
+    left: 10px;
+
+    bottom: 75px;
+
+    width: auto;
+
+    height: min(520px, calc(100vh - 100px));
+
+    border-radius: 16px;
+
+}
 
 
 .timeline-content {
@@ -1168,6 +1199,51 @@ img {
 /* Mobile navigation */
 
 @media (max-width: 900px) {
+
+
+
+ .nav-links {
+        display: none;
+    }
+
+    .resume-btn {
+        display: none;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .hero {
+        flex-direction: column-reverse;
+
+        text-align: center;
+
+        padding-top: 120px;
+    }
+
+    .hero-content {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    .availability {
+        justify-content: center;
+    }
+
+    .hero-description {
+        max-width: 600px;
+    }
+
+    .about-container {
+        grid-template-columns: 1fr;
+    }
+
+
+
 
 
     .timeline {
@@ -2414,4 +2490,497 @@ img {
 
     cursor: not-allowed;
 
+}
+
+/* =========================================
+   FINAL RESPONSIVE DESIGN
+   Keep this section at the VERY END
+========================================= */
+
+
+/* ---------- TABLET ---------- */
+
+@media (max-width: 900px) {
+
+    /* Header */
+    .navbar {
+        height: 70px;
+        padding: 0 20px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .resume-btn {
+        display: none;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links.active {
+        display: flex;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+
+        padding: 22px 20px;
+
+        background: var(--card-background);
+        border-bottom: 1px solid var(--border);
+
+        flex-direction: column;
+        align-items: center;
+
+        gap: 18px;
+    }
+
+
+    /* Hero */
+    .hero {
+        min-height: auto;
+
+        flex-direction: column-reverse;
+
+        text-align: center;
+
+        padding: 120px 24px 80px;
+
+        gap: 45px;
+    }
+
+    .hero-content {
+        max-width: 700px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .availability {
+        justify-content: center;
+    }
+
+    .hero-description {
+        max-width: 600px;
+    }
+
+
+    /* About */
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+
+    /* Skills */
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Projects */
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Experience */
+    .timeline {
+        padding-left: 30px;
+    }
+
+    .timeline-dot {
+        left: -30px;
+    }
+
+
+    /* Education */
+    .education-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Certifications */
+    .certifications-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 600px) {
+
+    /* Prevent horizontal scrolling */
+    html,
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+
+    /* Header */
+    .navbar {
+        height: 65px;
+        padding: 0 16px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .menu-btn {
+        font-size: 24px;
+    }
+
+    .nav-links.active {
+        top: 65px;
+        padding: 22px 15px;
+    }
+
+
+    /* Hero */
+    .hero {
+        width: 100%;
+
+        min-height: auto;
+
+        padding: 105px 16px 60px;
+
+        gap: 35px;
+    }
+
+
+    /* Profile image container */
+    .hero-image {
+        width: 240px;
+        height: 240px;
+    }
+
+    .profile-card {
+        width: 200px;
+        height: 200px;
+    }
+
+    .image-glow {
+        width: 220px;
+        height: 220px;
+
+        filter: blur(60px);
+    }
+
+
+    /* Availability */
+    .availability {
+        font-size: 10px;
+        letter-spacing: 1.2px;
+        margin-bottom: 18px;
+    }
+
+
+    /* Main heading */
+    .hero h1 {
+        font-size: clamp(38px, 11vw, 48px);
+        line-height: 1.08;
+        margin-bottom: 15px;
+    }
+
+
+    /* Subtitle */
+    .hero h2 {
+        font-size: clamp(20px, 5.5vw, 26px);
+        line-height: 1.4;
+        margin-bottom: 20px;
+    }
+
+
+    /* Description */
+    .hero-description {
+        width: 100%;
+        max-width: 500px;
+
+        font-size: 15px;
+        line-height: 1.7;
+
+        margin-bottom: 28px;
+    }
+
+
+    /* Hero buttons */
+    .hero-buttons {
+        width: 100%;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+
+        padding: 13px 18px;
+    }
+
+
+    /* Social links */
+    .social-links {
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 18px;
+    }
+
+
+    /* Sections */
+    .section {
+        width: 100%;
+
+        padding: 70px 16px;
+    }
+
+
+    /* Section headings */
+    .section-heading {
+        margin-bottom: 40px;
+    }
+
+    .section-heading h2 {
+        font-size: 32px;
+    }
+
+    .section-heading p {
+        font-size: 11px;
+    }
+
+
+    /* About */
+    .about-text p {
+        font-size: 15px;
+        line-height: 1.75;
+    }
+
+    .about-card {
+        padding: 20px;
+    }
+
+    .info-item {
+        gap: 12px;
+        padding: 15px 0;
+    }
+
+
+    /* Skills */
+    .skills-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .skill-category {
+        padding: 20px;
+    }
+
+    .skill-category-header {
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+
+    /* Projects */
+    .projects-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .project-image {
+        height: 190px;
+    }
+
+    .project-content {
+        padding: 20px;
+    }
+
+    .project-content h3 {
+        font-size: 19px;
+    }
+
+    .project-content > p {
+        min-height: auto;
+        font-size: 13px;
+    }
+
+    .project-links {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+
+    /* Experience */
+    .timeline {
+        padding-left: 25px;
+    }
+
+    .timeline::before {
+        left: 5px;
+    }
+
+    .timeline-dot {
+        left: -25px;
+
+        width: 13px;
+        height: 13px;
+    }
+
+    .timeline-content {
+        padding: 20px;
+    }
+
+    .timeline-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .timeline-content h3 {
+        font-size: 18px;
+    }
+
+    .timeline-content > p {
+        font-size: 13px;
+    }
+
+    .experience-type {
+        align-self: flex-start;
+    }
+
+
+    /* Education */
+    .education-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .education-card {
+        padding: 20px;
+    }
+
+
+    /* Certifications */
+    .certifications-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .certificate-card {
+        padding: 20px;
+    }
+
+
+    /* AI Button */
+    .ai-button {
+        right: 15px;
+        bottom: 15px;
+
+        width: 52px;
+        height: 52px;
+
+        padding: 0;
+
+        justify-content: center;
+    }
+
+    .ai-button-text {
+        display: none;
+    }
+
+
+    /* AI Chat */
+    .ai-chat {
+        left: 10px;
+        right: 10px;
+
+        bottom: 78px;
+
+        width: auto;
+
+        height: min(520px, calc(100vh - 100px));
+
+        border-radius: 16px;
+    }
+
+    .ai-chat-header {
+        padding: 15px;
+    }
+
+    .ai-messages {
+        padding: 14px;
+    }
+
+    .message-content,
+    .user-message-content {
+        max-width: 88%;
+    }
+
+    .suggested-questions {
+        margin-left: 36px;
+    }
+
+
+    /* Footer */
+    .footer {
+        padding: 25px 16px;
+        font-size: 12px;
+    }
+}
+
+
+/* ---------- VERY SMALL PHONES ---------- */
+
+@media (max-width: 380px) {
+
+    .hero {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .hero-image {
+        width: 210px;
+        height: 210px;
+    }
+
+    .profile-card {
+        width: 175px;
+        height: 175px;
+    }
+
+    .image-glow {
+        width: 190px;
+        height: 190px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero h2 {
+        font-size: 19px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .section {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .ai-chat {
+        left: 7px;
+        right: 7px;
+    }
 }
