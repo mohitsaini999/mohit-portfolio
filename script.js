@@ -273,8 +273,7 @@ async function sendMessage() {
     try {
 
         const response = await fetch(
-            // "https://mohit-portfolio-7g57.onrender.com/api/chat"
-            "http://localhost:5000/api/chat",
+            "https://mohit-portfolio-7g57.onrender.com/api/chat",
             {
 
                 method: "POST",
