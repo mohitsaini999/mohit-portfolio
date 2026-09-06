@@ -2,6 +2,11 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
+const Groq = require('groq-sdk');
+
+// Initialize Groq with the key from your .env file
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+
 const { GoogleGenAI } = require("@google/genai");
 
 const app = express();
@@ -23,9 +28,9 @@ app.use(express.json());
 // GEMINI
 // =================================
 
-const ai = new GoogleGenAI({
-    apiKey: process.env.GEMINI_API_KEY
-});
+// const ai = new GoogleGenAI({
+//     apiKey: process.env.GEMINI_API_KEY
+// });
 
 
 // =================================
@@ -268,11 +273,25 @@ app.get("/", (req, res) => {
 });
 
 
+// rate limit 
+//================================
+
+const rateLimit = require('express-rate-limit');
+
+// Limit each visitor to 10 chat messages per minute
+const chatLimiter = rateLimit({
+    windowMs: 1 * 60 * 1000, // 1 minute window
+    max: 10, 
+    message: { error: "You are sending messages too fast. Please wait a minute." },
+    headers: true,
+});
+
+
 // =================================
 // AI CHAT
 // =================================
 
-app.post("/api/chat", async (req, res) => {
+app.post("/api/chat", chatLimiter, async (req, res) => {
 
     try {
 
@@ -288,39 +307,67 @@ app.post("/api/chat", async (req, res) => {
         }
 
 
-        const response = await ai.models.generateContent({
+//         const response = await ai.models.generateContent({
 
-            model: "gemini-2.5-flash",
+//             model: "gemini-2.5-flash",
 
-            contents: userMessage,
+//             contents: userMessage,
 
-            config: {
+//             config: {
 
-                systemInstruction: personalContext
+//                 systemInstruction: personalContext
 
-            }
+//             }
 
+//         });
+
+
+//         res.json({
+
+//             reply: response.text
+
+//         });
+
+//     } catch (error) {
+
+//         console.error("Gemini API Error:", error);
+
+//         res.status(500).json({
+
+//             error: "Unable to get a response from the AI."
+
+//         });
+
+//     }
+
+// });
+
+   const response = await groq.chat.completions.create({
+            model: "openai/gpt-oss-20b", // Free, ultra-fast model
+            messages: [
+                { 
+                    role: "system", 
+                    content: personalContext // Uses your existing context variable
+                },
+                { 
+                    role: "user", 
+                    content: userMessage
+                }
+            ],
+            temperature: 0.5, // Keeps responses focused and factual
         });
 
-
+        // Send the reply back to the frontend
         res.json({
-
-            reply: response.text
-
+            reply: response.choices[0].message.content
         });
 
     } catch (error) {
-
-        console.error("Gemini API Error:", error);
-
+        console.error("Groq API Error:", error);
         res.status(500).json({
-
             error: "Unable to get a response from the AI."
-
         });
-
     }
-
 });
 
 
@@ -328,13 +375,7 @@ app.post("/api/chat", async (req, res) => {
 // START SERVER
 // =================================
 
-// app.listen(PORT, () => {
 
-//     console.log(
-//         `AI backend running at http://localhost:${PORT}`
-//     );
-
-// });
 
 
 app.listen(PORT, "0.0.0.0", () => {
